@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: 100;
+  color: #f0f0f0;
+}
+
+body {
+  font-family: "Source Code Pro", monospace;
+  background-color: #1b1b1b;
+  background-image: url(img/pattern.png);
+  background-repeat: repeat;
+}
+
+header {
+  margin: 50px auto 100px;
+  text-align: center;
+  h1 {
+    font-size: 1em;
+    margin: 5px auto;
+  }
+  h3 {
+    font-size: 0.6em;
+  }
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 10px auto;
+}
+input {
+  text-align: right;
+  text-transform: uppercase;
+  border: none;
+  background: none;
+}
+
+input:active {
+  border: none;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+
+.question {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.question h2 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.for {
+  width: 100%;
+}
+
+.three {
+  width: 75%;
+}
+
+.quiz-line {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: end;
+  border-bottom: 1px solid white;
+  position: relative;
+  &::after {
+    content: "+";
+    position: absolute;
+    bottom: 0;
+    left: -0.5em;
+  }
+}
+
+.answer {
+  height: 30px;
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  input {
+    color: black;
+    border-radius: 12px;
+    padding: 0.01em;
+    text-align: center;
+    width: 1.2em;
+    background-color: rgb(201, 198, 198);
+    box-shadow: inset 0px 0px 4px 1px black;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    --moz-appearance: textfield;
+  }
+}
+
+button {
+  color: black;
+  border-radius: 1em;
+  font-size: 0.8em;
+  width: 100px;
+  padding: 0.3em;
+}
+
+div.footer-icons {
+  position: absolute;
+  width: 100px;
+  bottom: 0;
+  left: 0;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  a {
+    font-size: 0.6em;
+    text-decoration: none;
+  }
+}
