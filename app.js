@@ -1,4 +1,4 @@
-import { cryptQuiz, decryptQuiz, displayQuiz } from "./quizProcess.mjs";
+import { cryptQuiz, decryptQuiz, displayQuiz } from "./quizProcess.js";
 const quizStage = document.querySelector(".question");
 const answerStage = document.querySelector(".answer");
 const submitBtn = document.querySelector("button.submit");
