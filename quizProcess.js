@@ -16,7 +16,7 @@ function generateNumQuiz() {
     let isNoDouble0 = arrNums.map(
       (num) => (num.toString().match(/0/g) || []).length <= 1
     );
-    let isOke = arrNums[0] != arrNums[1] && set.size < 4;
+    let isOke = arrNums[0] != arrNums[1] && set.size == 3;
     if (isOke && (is3Num[0] || is3Num[1]) && isNoDouble0[0] && isNoDouble0[1]) {
       result = { arrNums, set };
       isFor = true;
@@ -44,6 +44,7 @@ function cryptQuiz() {
       .join("")
   );
   displayQuiz(cryptedQuiz);
+  console.log(chars);
   return { cryptedQuiz, chars };
 }
 
