@@ -72,14 +72,22 @@ function displayQuiz(quizDisplayed) {
       .map((c) => `<span class=${regex.test(c) ? "num" : "char"}>${c}</span>`)
       .join("")
   );
-  let quizLength = quizDisplayed.map((e) => (e.length == 4 ? "for" : "three"));
+  let quizLength = quizDisplayed.map((e) =>
+    e.length == 4
+      ? "for"
+      : e.length == 3
+      ? "three"
+      : e.length == 2
+      ? "two"
+      : "one"
+  );
   let htmlQuiz = `
     <div class="quiz-line">
      <h2 class="${quizLength[0]}">${quiz[0]}</h2>
      <h2 class="${quizLength[1]}">${quiz[1]}</h2>
     </div>
-     <h2 class="${quizLength[2]}">${quiz[2]}</h2>
-    `;
+     <h2 class="${quizLength[2]} arithResult">${quiz[2]}</h2>
+     `;
   quizStage.innerHTML = htmlQuiz;
 }
 

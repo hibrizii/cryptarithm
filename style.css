@@ -75,12 +75,21 @@ input:focus {
 .num {
   color: white;
 }
+
 .for {
   width: 100%;
 }
 
 .three {
   width: 75%;
+}
+
+.two {
+  width: 50%;
+}
+
+.one {
+  width: 25%;
 }
 
 .quiz-line {
@@ -145,19 +154,25 @@ input:focus {
 }
 
 button {
-  color: black;
+  color: rgb(56, 56, 56);
   font-weight: 500;
-  border-radius: 1.2em;
-  font-size: 0.9em;
   width: 100px;
   padding: 8px 10px;
   text-align: center;
   cursor: pointer;
+  &.submit {
+    font-size: 0.6em;
+    font-weight: bolder;
+    border-radius: 2em;
+    padding: 0.9em;
+  }
   &.starto-btn {
+    font-size: 0.9em;
     display: block;
     margin: 0 auto;
   }
   &.icon {
+    font-size: 1em;
     padding: 0.1em;
     position: absolute;
     border: none;
@@ -165,20 +180,25 @@ button {
     width: fit-content;
     border-radius: 50%;
     transition: transform 0.9s ease;
+    top: 0.3em;
   }
   &:has(i).reload {
-    top: 0.5em;
-    left: 0;
+    left: 0.1em;
   }
   &:has(i).reload:active {
     transform: rotate(-360deg);
   }
   &.visible-feature {
-    top: 0.5em;
-    right: 0;
+    right: 0.1em;
   }
   &.visible-feature:active {
     transform: scale(0.6);
+  }
+  &.option {
+    left: -2em;
+  }
+  &.explaining {
+    right: -2em;
   }
   i {
     font-size: 0.8em;

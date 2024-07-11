@@ -9,7 +9,7 @@ let arrInput = Array.from(answerStage.children);
 let isVFAllowed = false;
 arrInput.forEach((e, i, arr) => {
   e.children[1].addEventListener("input", (event) => {
-    if (i <= arr.length - 2 && event.target.value.length == 1) {
+    if (i < arr.length - 1 && event.target.value.length == 1) {
       event.target.blur();
       arr[i + 1].children[1].focus();
     }
@@ -28,6 +28,7 @@ function checkAnswer(userInput, trueAnswer) {
 }
 
 function playGame() {
+  submitBtn.innerText = "SUBMIT";
   mainStage.style.backgroundColor = "#3f2af752";
   isVFAllowed = false;
   vbFeatureBtn.innerHTML = "<i class='fa-solid fa-eye-slash char'></i>";
@@ -78,6 +79,8 @@ function playGame() {
         parseInt(decryptedQuiz[2]);
       let isTrue = checkAnswer(userInput, chars) || alternateAnswer;
       if (isTrue) {
+        submitBtn.innerText = "Main Lagi";
+        submitBtn.onclick = playGame;
         mainStage.style.backgroundColor = "#0080008a";
         displayQuiz(decryptedQuiz);
       } else {
