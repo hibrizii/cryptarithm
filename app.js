@@ -1,8 +1,21 @@
 import { cryptQuiz, decryptQuiz, displayQuiz } from "./quizProcess.js";
+const mainStage = document.querySelector("main");
 const quizStage = document.querySelector(".question");
 const answerStage = document.querySelector(".answer");
 const submitBtn = document.querySelector("button.submit");
-const arrInput = Array.from(answerStage.children);
+const reloadBtn = document.querySelector(".reload");
+const vbFeatureBtn = document.querySelector(".visible-feature");
+let arrInput = Array.from(answerStage.children);
+let isVFAllowed = false;
+arrInput.forEach((e, i, arr) => {
+  e.children[1].addEventListener("input", (event) => {
+    if (i <= arr.length - 2 && event.target.value.length == 1) {
+      event.target.blur();
+      arr[i + 1].children[1].focus();
+    }
+  });
+});
+
 function checkAnswer(userInput, trueAnswer) {
   let isValid = true;
   let inputIndex = 0;
@@ -15,40 +28,69 @@ function checkAnswer(userInput, trueAnswer) {
 }
 
 function playGame() {
+  mainStage.style.backgroundColor = "#3f2af752";
+  isVFAllowed = false;
+  vbFeatureBtn.innerHTML = "<i class='fa-solid fa-eye-slash char'></i>";
   const { cryptedQuiz, chars } = cryptQuiz();
+  displayQuiz(cryptedQuiz);
+  let textNumQuestion = Array.from(quizStage.querySelectorAll("h2 span"));
+  arrInput.forEach((e) => {
+    console.log(e.children[1].oninput);
+    e.children[1].oninput = null;
+    e.children[1].value = "";
+  });
   let index = 0;
   for (const key in chars) {
     arrInput[index].children[0].innerText = `${chars[key]}:`;
-    console.log(arrInput[index].children[0]);
     index++;
   }
 
-  arrInput.forEach((e, i, arr) => {
-    e.children[1].addEventListener("input", (event) => {
-      if (i <= arr.length - 2 && event.target.value.length == 1) {
-        event.target.blur();
-        arr[i + 1].children[1].focus();
-        console.log(event.target.value);
-      }
-    });
-  });
-  submitBtn.addEventListener("click", () => {
+  function vbFeature() {
+    let tempValue = arrInput.map((e) => e.children[1].value);
+    let decryptedQuiz = decryptQuiz(cryptedQuiz, chars, tempValue);
+    displayQuiz(decryptedQuiz);
+  }
+
+  vbFeatureBtn.onclick = () => {
+    isVFAllowed = !isVFAllowed;
+    if (isVFAllowed) {
+      vbFeatureBtn.innerHTML = "<i class='fa-regular fa-eye'></i>";
+      vbFeature();
+      arrInput.forEach((e) => {
+        e.children[1].oninput = vbFeature;
+      });
+    } else {
+      vbFeatureBtn.innerHTML = "<i class='fa-solid fa-eye-slash char'></i>";
+      displayQuiz(cryptedQuiz);
+      arrInput.forEach((e) => {
+        e.children[1].oninput = null;
+      });
+    }
+  };
+
+  function submit() {
     let userInput = arrInput.map((e) => e.children[1].value);
     if (!userInput.includes("")) {
-      let textNumQuestion = Array.from(quizStage.querySelectorAll("h2 span"));
       let decryptedQuiz = decryptQuiz(cryptedQuiz, chars, userInput);
+      textNumQuestion = Array.from(quizStage.querySelectorAll("h2 span"));
       let alternateAnswer =
         parseInt(decryptedQuiz[0]) + parseInt(decryptedQuiz[1]) ==
         parseInt(decryptedQuiz[2]);
       let isTrue = checkAnswer(userInput, chars) || alternateAnswer;
       if (isTrue) {
+        mainStage.style.backgroundColor = "#0080008a";
         displayQuiz(decryptedQuiz);
-        textNumQuestion.forEach((e) => (e.style.color = "blue"));
       } else {
         textNumQuestion.forEach((e) => (e.style.color = "red"));
       }
     }
-  });
+  }
+  submitBtn.onclick = submit;
 }
 
-playGame();
+reloadBtn.onclick = playGame;
+document.querySelector(".starto-btn").onclick = (event) => {
+  mainStage.classList.toggle("not-start-yet");
+  playGame();
+  event.target.classList.add("not-start-yet");
+};

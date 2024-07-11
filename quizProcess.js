@@ -43,8 +43,6 @@ function cryptQuiz() {
       .map((n) => chars[n])
       .join("")
   );
-  displayQuiz(cryptedQuiz);
-  console.log(chars);
   return { cryptedQuiz, chars };
 }
 
@@ -52,7 +50,8 @@ function decryptQuiz(cryptedQuiz, chars, userInput) {
   let keyObj = {};
   let indexInput = 0;
   for (const key in chars) {
-    keyObj[`${chars[key]}`] = userInput[indexInput];
+    keyObj[`${chars[key]}`] =
+      userInput[indexInput] != "" ? userInput[indexInput] : chars[key];
     indexInput++;
   }
   let decryptedQuiz = cryptedQuiz.map((num) =>
@@ -66,10 +65,11 @@ function decryptQuiz(cryptedQuiz, chars, userInput) {
 }
 
 function displayQuiz(quizDisplayed) {
+  let regex = /[0-9]/;
   let quiz = quizDisplayed.map((num) =>
     num
       .split("")
-      .map((c) => `<span>${c}</span>`)
+      .map((c) => `<span class=${regex.test(c) ? "num" : "char"}>${c}</span>`)
       .join("")
   );
   let quizLength = quizDisplayed.map((e) => (e.length == 4 ? "for" : "three"));
