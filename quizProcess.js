@@ -1,16 +1,17 @@
 const quizStage = document.querySelector(".question");
 
-function generateNum() {
+function generateNum(variety) {
   const num1 = Math.floor(Math.random() * (8500 - 500 + 1)) + 500;
   const num2 = Math.floor(Math.random() * (1500 - 100 + 1)) + 100;
-  return [num1, num2, num1 + num2];
+  const arith = variety == "sum" ? num1 + num2 : num1 - num2;
+  return [num1, num2, arith];
 }
 
-function generateNumQuiz() {
+function generateNumQuiz(vr) {
   let isFor = false;
   let result;
   while (!isFor) {
-    let arrNums = generateNum();
+    let arrNums = generateNum(vr);
     let set = new Set(arrNums.join("").split(""));
     let is3Num = arrNums.map((e) => new Set(e.toString()).size >= 3);
     let isNoDouble0 = arrNums.map(
@@ -25,8 +26,7 @@ function generateNumQuiz() {
   return result;
 }
 
-function cryptQuiz() {
-  let { arrNums, set } = generateNumQuiz();
+function cryptQuiz({ arrNums, set }) {
   let chars = {};
   let arrSet = Array.from(set);
   let prevChar = [];
@@ -64,7 +64,7 @@ function decryptQuiz(cryptedQuiz, chars, userInput) {
   return decryptedQuiz;
 }
 
-function displayQuiz(quizDisplayed) {
+function displayQuiz(quizDisplayed, tipe) {
   let regex = /[0-9]/;
   let quiz = quizDisplayed.map((num) =>
     num
@@ -82,7 +82,7 @@ function displayQuiz(quizDisplayed) {
       : "one"
   );
   let htmlQuiz = `
-    <div class="quiz-line">
+    <div class="quiz-line ${tipe}">
      <h2 class="${quizLength[0]}">${quiz[0]}</h2>
      <h2 class="${quizLength[1]}">${quiz[1]}</h2>
     </div>
@@ -91,4 +91,4 @@ function displayQuiz(quizDisplayed) {
   quizStage.innerHTML = htmlQuiz;
 }
 
-export { cryptQuiz, decryptQuiz, displayQuiz };
+export { cryptQuiz, decryptQuiz, displayQuiz, generateNumQuiz };
