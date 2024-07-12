@@ -5,14 +5,31 @@ import {
   generateNumQuiz,
 } from "./quizProcess.js";
 const dialogOption = document.querySelector(".dialog-option");
+const dialogInfo = document.querySelector(".dialog-info");
 const optionsBTn = Array.from(dialogOption.getElementsByTagName("button"));
 const mainStage = document.querySelector("main");
 const quizStage = document.querySelector(".question");
 const answerStage = document.querySelector(".answer");
 const submitBtn = document.querySelector("button.submit");
 const reloadBtn = document.querySelector(".reload");
+const infoBtn = document.querySelector(".explaining");
 const vbFeatureBtn = document.querySelector(".visible-feature");
+const closeBtn = document.querySelector(".fa-circle-xmark");
+
+if (document.cookie == "info clicked") infoBtn.classList.remove("tooltip");
+
+infoBtn.addEventListener("click", () => {
+  document.cookie = "info clicked";
+  infoBtn.classList.remove("tooltip");
+  dialogInfo.showModal();
+});
+
+closeBtn.addEventListener("click", () => {
+  closeBtn.parentNode.close();
+});
+
 dialogOption.showModal();
+
 let arrInput = Array.from(answerStage.children);
 let isVFAllowed = false;
 arrInput.forEach((e, i, arr) => {
@@ -35,10 +52,12 @@ function checkAnswer(userInput, trueAnswer) {
   return isValid;
 }
 
+// playTheGame("sum")();
+
 function playTheGame(arithmType) {
   return () => {
     submitBtn.innerText = "SUBMIT";
-    mainStage.style.backgroundColor = "#3f2af752";
+    mainStage.style.backgroundColor = "#f0f0ef5b";
     isVFAllowed = false;
     vbFeatureBtn.innerHTML = "<i class='fa-solid fa-eye-slash char'></i>";
     const objArrNSet = generateNumQuiz(arithmType);
@@ -62,7 +81,7 @@ function playTheGame(arithmType) {
     vbFeatureBtn.onclick = () => {
       isVFAllowed = !isVFAllowed;
       if (isVFAllowed) {
-        vbFeatureBtn.innerHTML = "<i class='fa-regular fa-eye'></i>";
+        vbFeatureBtn.innerHTML = "<i class='fa-solid fa-eye'></i>";
         vbFeature();
         arrInput.forEach((e) => {
           e.children[1].oninput = vbFeature;
@@ -108,6 +127,9 @@ optionsBTn.forEach((e, i) => {
   const type = i == 0 ? "sum" : "sub";
   const playGame = playTheGame(type);
   e.onclick = () => {
+    mainStage.classList.remove("not-started");
+    dialogOption.classList.add("bg-gelap");
+    console.log(dialogOption.classList.value);
     playGame();
     dialogOption.close();
     reloadBtn.onclick = playGame;

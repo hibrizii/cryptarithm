@@ -1,43 +1,59 @@
+:root {
+  --text-prime: #383727;
+}
+
 * {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   font-weight: 550;
+  outline: none;
 }
 
 body {
-  color: #f0f0f0;
+  color: var(--text-prime);
   font-size: 1.3em;
-  background-color: #968bb6;
-  background-image: url(img/—Pngtree—lines\ seamless\ abstract\ pattern\ vector_9084491.png);
+  background-color: #b2b68b;
+  background-image: url(img/garis.png);
   background-size: repeat;
 }
 
 header {
-  margin: 50px auto 80px;
+  margin: 20px auto 80px;
   text-align: center;
-  color: #ffffff;
-  text-shadow: 0px 0px 1px black;
   width: 320px;
   h1 {
+    background-color: #f0f0efc4;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 5px 15px;
     font-size: 1em;
     margin: 5px auto;
   }
   h3 {
+    color: white;
+    letter-spacing: 0.5px;
+    text-shadow: 0px 0px 5px var(--text-prime);
+    width: fit-content;
     font-size: 0.6em;
   }
 }
 main {
   border-radius: 7px;
-  background-color: #3f2af752;
+  background-color: #f0f0ef5b;
   backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  width: 320px;
+  width: 310px;
   margin: 10px auto;
 }
+
+.not-started {
+  visibility: hidden;
+}
+
 input {
   font-size: 1em;
   text-align: right;
@@ -70,11 +86,11 @@ input:focus {
 }
 
 .char {
-  color: #424242c9;
+  color: #534d4696;
 }
 
 .num {
-  color: white;
+  color: var(--text-prime);
 }
 
 .for {
@@ -98,7 +114,7 @@ input:focus {
   flex-direction: column;
   width: 100%;
   align-items: end;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--text-prime);
   position: relative;
   &.sum::after {
     content: "+";
@@ -164,11 +180,12 @@ button {
   cursor: pointer;
   font-size: 0.6em;
   &.submit {
-    color: #7a49bb;
+    color: white;
+    background: linear-gradient(var(--text-prime), #5f5542);
     font-weight: bolder;
     border-radius: 2em;
     padding: 0.9em;
-    border: 0.5px solid #7a49bb;
+    border: 0.5px solid var(--text-prime);
   }
   &.starto-btn {
     font-size: 0.9em;
@@ -206,7 +223,7 @@ button {
   }
   i {
     font-size: 0.8em;
-    color: rgba(255, 255, 255, 1);
+    color: var(--text-prime);
   }
 }
 
@@ -227,36 +244,104 @@ div.footer-icons {
   }
 }
 
-.dialog-option {
+dialog {
   position: fixed;
-  top: 47%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
   border: none;
   border-radius: 10px;
-  padding: 30px;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.514);
   text-align: center;
   font-family: "Comic Sans MS", cursive;
-  width: 270px;
+  width: 250px;
 }
 
-.dialog-option h2 {
-  font-size: 1.05em;
-  margin-bottom: 20px;
-  color: #2c1bc5e5;
+dialog h2 {
+  font-size: 0.9em;
+  margin: 10px;
+  color: var(--text-prime);
 }
 
 button.option-btn {
-  background-color: #2c1bc5e5;
+  background-color: var(--text-prime);
   width: 150px;
-  font-size: 0.7em;
+  font-size: 0.6em;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  margin: 6px auto;
-  transition: background-color 0.3s ease; /* Efek transisi warna */
+  margin: 3px auto;
+  transition: background-color 0.3s ease;
   outline: none;
+}
+
+.bg-gelap::backdrop {
+  background-color: rgba(39, 38, 28, 0.748);
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: "Klik di bawah untuk cara mainnya";
+  position: absolute;
+  top: -60px;
+  left: -120%;
+  background-color: #33333385;
+  width: 60px;
+  font-size: 0.55em;
+  color: #e9e9e9;
+  padding: 7px;
+  border-radius: 5px;
+  transition: opacity 0.3s;
+}
+
+.dialog-info {
+  box-sizing: border-box;
+  padding: 10px 0;
+  width: clamp(350px, 99vw, 500px);
+  height: 450px;
+  overflow: visible;
+}
+
+.content-info {
+  box-sizing: border-box;
+  padding: 10px;
+  height: 99%;
+  width: 100%;
+  overflow: auto;
+  text-align: left;
+  p {
+    font-weight: 100;
+    font-size: 0.8em;
+  }
+}
+
+.fa-circle-xmark {
+  cursor: pointer;
+  font-size: 1.2em;
+  background-color: white;
+  color: rgb(209, 2, 2);
+  border-radius: 50%;
+  top: -8px;
+  right: -8px;
+  position: absolute;
+}
+
+::-webkit-scrollbar {
+  background-color: #1b1b1b00;
+  transition: 0.3s ease;
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #707070;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #bdbdbd;
 }
