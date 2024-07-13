@@ -1,12 +1,10 @@
 const quizStage = document.querySelector(".question");
-
 function generateNum(variety) {
   const num1 = Math.floor(Math.random() * (8500 - 500 + 1)) + 500;
   const num2 = Math.floor(Math.random() * (1500 - 100 + 1)) + 100;
   const arith = variety == "sum" ? num1 + num2 : num1 - num2;
   return [num1, num2, arith];
 }
-
 function generateNumQuiz(vr) {
   let isFor = false;
   let result;
@@ -25,7 +23,6 @@ function generateNumQuiz(vr) {
   }
   return result;
 }
-
 function cryptQuiz({ arrNums, set }) {
   let chars = {};
   let arrSet = Array.from(set);
@@ -45,7 +42,6 @@ function cryptQuiz({ arrNums, set }) {
   );
   return { cryptedQuiz, chars };
 }
-
 function decryptQuiz(cryptedQuiz, chars, userInput) {
   let keyObj = {};
   let indexInput = 0;
@@ -63,7 +59,6 @@ function decryptQuiz(cryptedQuiz, chars, userInput) {
   );
   return decryptedQuiz;
 }
-
 function displayQuiz(quizDisplayed, tipe) {
   let regex = /[0-9]/;
   let quiz = quizDisplayed.map((num) =>
@@ -90,5 +85,4 @@ function displayQuiz(quizDisplayed, tipe) {
      `;
   quizStage.innerHTML = htmlQuiz;
 }
-
 export { cryptQuiz, decryptQuiz, displayQuiz, generateNumQuiz };
