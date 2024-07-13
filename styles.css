@@ -1,7 +1,6 @@
 :root {
   --text-prime: #383727;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +8,6 @@
   font-weight: 550;
   outline: none;
 }
-
 body {
   color: var(--text-prime);
   font-size: 1.3em;
@@ -17,13 +15,11 @@ body {
   background-image: url(img/garis.png);
   background-size: repeat;
 }
-
 header {
   margin: 20px auto 80px;
   text-align: center;
   width: 320px;
 }
-
 header h1 {
   background-color: #f0f0efc4;
   border-radius: 15px;
@@ -32,7 +28,6 @@ header h1 {
   font-size: 1em;
   margin: 5px auto;
 }
-
 header h3 {
   color: white;
   letter-spacing: 0.5px;
@@ -40,7 +35,6 @@ header h3 {
   width: fit-content;
   font-size: 0.6em;
 }
-
 main {
   border-radius: 7px;
   background-color: #f0f0ef5b;
@@ -52,11 +46,9 @@ main {
   width: 310px;
   margin: 10px auto;
 }
-
 .not-started {
   visibility: hidden;
 }
-
 input {
   font-size: 1em;
   text-align: right;
@@ -64,13 +56,11 @@ input {
   border: none;
   background: none;
 }
-
 input:active,
 input:focus {
   border: none;
   outline: none;
 }
-
 .question {
   width: 100px;
   display: flex;
@@ -78,37 +68,29 @@ input:focus {
   justify-content: space-around;
   align-items: end;
 }
-
 .question h2 {
   transition: all 0.9s ease;
   display: flex;
   justify-content: space-around;
 }
-
 .char {
   color: #534d4696;
 }
-
 .num {
   color: var(--text-prime);
 }
-
 .for {
   width: 100%;
 }
-
 .three {
   width: 75%;
 }
-
 .two {
   width: 50%;
 }
-
 .one {
   width: 25%;
 }
-
 .quiz-line {
   display: flex;
   flex-direction: column;
@@ -117,21 +99,17 @@ input:focus {
   border-bottom: 1px solid var(--text-prime);
   position: relative;
 }
-
 .quiz-line.sum::after {
   content: "+";
 }
-
 .quiz-line.sub::after {
   content: "-";
 }
-
 .quiz-line::after {
   position: absolute;
   bottom: 0;
   left: -0.5em;
 }
-
 .answer {
   height: 30px;
   width: 160px;
@@ -139,17 +117,14 @@ input:focus {
   display: flex;
   justify-content: space-between;
 }
-
 .answer div {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-
 .answer div h2 {
   font-size: 1em;
 }
-
 .answer input {
   color: rgba(0, 0, 0, 0.856);
   border-radius: 12px;
@@ -159,24 +134,20 @@ input:focus {
   background-color: rgb(255, 255, 255);
   box-shadow: inset 0px 0px 4px -1px black;
 }
-
 .answer input[type="number"]::-webkit-inner-spin-button,
 .answer input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 .answer input[type="number"] {
   --moz-appearance: textfield;
 }
-
 .btns {
   position: relative;
   margin: 0;
   width: 200px;
   text-align: center;
 }
-
 button {
   color: rgb(56, 56, 56);
   font-weight: 500;
@@ -185,8 +156,11 @@ button {
   text-align: center;
   cursor: pointer;
   font-size: 0.6em;
+  -webkit-tap-highlight-color: transparent;
 }
-
+button:focus {
+  outline: none; /* Untuk browser lainnya */
+}
 button.submit {
   color: white;
   background: linear-gradient(var(--text-prime), #5f5542);
@@ -195,13 +169,11 @@ button.submit {
   padding: 0.9em;
   border: 0.5px solid var(--text-prime);
 }
-
 button.starto-btn {
   font-size: 0.9em;
   display: block;
   margin: 0 auto;
 }
-
 button.icon {
   font-size: 1em;
   padding: 0.1em;
@@ -213,36 +185,28 @@ button.icon {
   transition: transform 0.9s ease;
   top: 0.3em;
 }
-
 button:has(i).reload {
   left: 0.1em;
 }
-
 button:has(i).reload:active {
   transform: rotate(-360deg);
 }
-
 button.visible-feature {
   right: 0.1em;
 }
-
 button.visible-feature:active {
   transform: scale(0.6);
 }
-
 button.option {
   left: -2em;
 }
-
 button.explaining {
   right: -2em;
 }
-
 button i {
   font-size: 0.8em;
   color: var(--text-prime);
 }
-
 div.footer-icons {
   position: absolute;
   height: 40px;
@@ -254,13 +218,11 @@ div.footer-icons {
   align-items: center;
   justify-content: space-evenly;
 }
-
 div.footer-icons a {
   font-size: 0.6em;
   text-decoration: none;
   color: white;
 }
-
 dialog {
   position: fixed;
   top: 45%;
@@ -275,13 +237,11 @@ dialog {
   font-family: "Comic Sans MS", cursive;
   width: 250px;
 }
-
 dialog h2 {
   font-size: 0.9em;
   margin: 10px;
   color: var(--text-prime);
 }
-
 button.option-btn {
   background-color: var(--text-prime);
   width: 150px;
@@ -294,16 +254,13 @@ button.option-btn {
   transition: background-color 0.3s ease;
   outline: none;
 }
-
 .bg-gelap::backdrop {
   background-color: rgba(39, 38, 28, 0.748);
 }
-
 .tooltip {
   position: relative;
   animation: naikTurun 1.5s infinite;
 }
-
 .tooltip::after {
   content: attr(tooltip-text);
   position: absolute;
@@ -315,7 +272,6 @@ button.option-btn {
   border-radius: 5px;
   transition: opacity 0.3s;
 }
-
 @keyframes naikTurun {
   0% {
     transform: translateY(0);
@@ -327,7 +283,6 @@ button.option-btn {
     transform: translateY(0);
   }
 }
-
 .dialog-info {
   box-sizing: border-box;
   padding: 10px 0;
@@ -335,7 +290,6 @@ button.option-btn {
   height: 450px;
   overflow: visible;
 }
-
 .content-info {
   box-sizing: border-box;
   padding: 10px 17px;
@@ -344,12 +298,10 @@ button.option-btn {
   overflow: auto;
   text-align: left;
 }
-
 .content-info p {
   font-weight: 100;
   font-size: 0.8em;
 }
-
 .fa-circle-xmark {
   cursor: pointer;
   font-size: 1.2em;
@@ -360,21 +312,17 @@ button.option-btn {
   right: -8px;
   position: absolute;
 }
-
 ::-webkit-scrollbar {
   background-color: #1b1b1b00;
   transition: 0.3s ease;
   width: 0.5em;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #707070;
 }
-
 ::-webkit-scrollbar-thumb:active {
   background: #bdbdbd;
 }
-
 .dialog-info img,
 .dialog-info video {
   border-radius: 7px;
@@ -382,7 +330,6 @@ button.option-btn {
   width: 200px;
   margin: 5px auto;
 }
-
 .dialog-info video {
   width: 220px;
 }
