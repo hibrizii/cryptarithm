@@ -15,21 +15,8 @@ const reloadBtn = document.querySelector(".reload");
 const infoBtn = document.querySelector(".explaining");
 const vbFeatureBtn = document.querySelector(".visible-feature");
 const closeBtn = document.querySelector(".fa-circle-xmark");
-
 if (document.cookie == "info clicked") infoBtn.classList.remove("tooltip");
-
-infoBtn.addEventListener("click", () => {
-  document.cookie = "info clicked";
-  infoBtn.classList.remove("tooltip");
-  dialogInfo.showModal();
-});
-
-closeBtn.addEventListener("click", () => {
-  closeBtn.parentNode.close();
-});
-
 dialogOption.showModal();
-
 let arrInput = Array.from(answerStage.children);
 let isVFAllowed = false;
 arrInput.forEach((e, i, arr) => {
@@ -40,7 +27,6 @@ arrInput.forEach((e, i, arr) => {
     }
   });
 });
-
 function checkAnswer(userInput, trueAnswer) {
   let isValid = true;
   let inputIndex = 0;
@@ -51,9 +37,6 @@ function checkAnswer(userInput, trueAnswer) {
   }
   return isValid;
 }
-
-// playTheGame("sum")();
-
 function playTheGame(arithmType) {
   return () => {
     submitBtn.innerText = "SUBMIT";
@@ -62,7 +45,6 @@ function playTheGame(arithmType) {
     vbFeatureBtn.innerHTML = "<i class='fa-solid fa-eye-slash char'></i>";
     const objArrNSet = generateNumQuiz(arithmType);
     const { cryptedQuiz, chars } = cryptQuiz(objArrNSet);
-    console.log(cryptedQuiz, chars);
     displayQuiz(cryptedQuiz, arithmType);
     arrInput.forEach((e) => {
       e.children[1].oninput = null;
@@ -98,7 +80,6 @@ function playTheGame(arithmType) {
     submitBtn.onclick = submit;
   };
 }
-
 function submitAnswer(cryptedQuiz, chars, tipe) {
   return () => {
     let userInput = arrInput.map((e) => e.children[1].value);
@@ -122,20 +103,25 @@ function submitAnswer(cryptedQuiz, chars, tipe) {
     }
   };
 }
-
 optionsBTn.forEach((e, i) => {
   const type = i == 0 ? "sum" : "sub";
   const playGame = playTheGame(type);
   e.onclick = () => {
     mainStage.classList.remove("not-started");
     dialogOption.classList.add("bg-gelap");
-    console.log(dialogOption.classList.value);
     playGame();
     dialogOption.close();
     reloadBtn.onclick = playGame;
   };
 });
-
 document.querySelector(".option").addEventListener("click", () => {
   dialogOption.showModal();
+});
+infoBtn.addEventListener("click", () => {
+  document.cookie = "info clicked";
+  infoBtn.classList.remove("tooltip");
+  dialogInfo.showModal();
+});
+closeBtn.addEventListener("click", () => {
+  closeBtn.parentNode.close();
 });
