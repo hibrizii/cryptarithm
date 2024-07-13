@@ -22,22 +22,25 @@ header {
   margin: 20px auto 80px;
   text-align: center;
   width: 320px;
-  h1 {
-    background-color: #f0f0efc4;
-    border-radius: 15px;
-    width: fit-content;
-    padding: 5px 15px;
-    font-size: 1em;
-    margin: 5px auto;
-  }
-  h3 {
-    color: white;
-    letter-spacing: 0.5px;
-    text-shadow: 0px 0px 5px var(--text-prime);
-    width: fit-content;
-    font-size: 0.6em;
-  }
 }
+
+header h1 {
+  background-color: #f0f0efc4;
+  border-radius: 15px;
+  width: fit-content;
+  padding: 5px 15px;
+  font-size: 1em;
+  margin: 5px auto;
+}
+
+header h3 {
+  color: white;
+  letter-spacing: 0.5px;
+  text-shadow: 0px 0px 5px var(--text-prime);
+  width: fit-content;
+  font-size: 0.6em;
+}
+
 main {
   border-radius: 7px;
   background-color: #f0f0ef5b;
@@ -62,13 +65,10 @@ input {
   background: none;
 }
 
-input:active {
-  border: none;
-}
-
+input:active,
 input:focus {
-  outline: none;
   border: none;
+  outline: none;
 }
 
 .question {
@@ -116,17 +116,20 @@ input:focus {
   align-items: end;
   border-bottom: 1px solid var(--text-prime);
   position: relative;
-  &.sum::after {
-    content: "+";
-  }
-  &.sub::after {
-    content: "-";
-  }
-  &::after {
-    position: absolute;
-    bottom: 0;
-    left: -0.5em;
-  }
+}
+
+.quiz-line.sum::after {
+  content: "+";
+}
+
+.quiz-line.sub::after {
+  content: "-";
+}
+
+.quiz-line::after {
+  position: absolute;
+  bottom: 0;
+  left: -0.5em;
 }
 
 .answer {
@@ -135,33 +138,36 @@ input:focus {
   margin: 10px;
   display: flex;
   justify-content: space-between;
-  div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    h2 {
-      font-size: 1em;
-    }
-  }
-  input {
-    color: rgba(0, 0, 0, 0.856);
-    border-radius: 12px;
-    padding: 0.04em;
-    text-align: center;
-    width: 1.2em;
-    background-color: rgb(255, 255, 255);
-    box-shadow: inset 0px 0px 4px -1px black;
-  }
+}
 
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+.answer div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  input[type="number"] {
-    --moz-appearance: textfield;
-  }
+.answer div h2 {
+  font-size: 1em;
+}
+
+.answer input {
+  color: rgba(0, 0, 0, 0.856);
+  border-radius: 12px;
+  padding: 0.04em;
+  text-align: center;
+  width: 1.2em;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0px 0px 4px -1px black;
+}
+
+.answer input[type="number"]::-webkit-inner-spin-button,
+.answer input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.answer input[type="number"] {
+  --moz-appearance: textfield;
 }
 
 .btns {
@@ -179,52 +185,62 @@ button {
   text-align: center;
   cursor: pointer;
   font-size: 0.6em;
-  &.submit {
-    color: white;
-    background: linear-gradient(var(--text-prime), #5f5542);
-    font-weight: bolder;
-    border-radius: 2em;
-    padding: 0.9em;
-    border: 0.5px solid var(--text-prime);
-  }
-  &.starto-btn {
-    font-size: 0.9em;
-    display: block;
-    margin: 0 auto;
-  }
-  &.icon {
-    font-size: 1em;
-    padding: 0.1em;
-    position: absolute;
-    border: none;
-    background: none;
-    width: fit-content;
-    border-radius: 50%;
-    transition: transform 0.9s ease;
-    top: 0.3em;
-  }
-  &:has(i).reload {
-    left: 0.1em;
-  }
-  &:has(i).reload:active {
-    transform: rotate(-360deg);
-  }
-  &.visible-feature {
-    right: 0.1em;
-  }
-  &.visible-feature:active {
-    transform: scale(0.6);
-  }
-  &.option {
-    left: -2em;
-  }
-  &.explaining {
-    right: -2em;
-  }
-  i {
-    font-size: 0.8em;
-    color: var(--text-prime);
-  }
+}
+
+button.submit {
+  color: white;
+  background: linear-gradient(var(--text-prime), #5f5542);
+  font-weight: bolder;
+  border-radius: 2em;
+  padding: 0.9em;
+  border: 0.5px solid var(--text-prime);
+}
+
+button.starto-btn {
+  font-size: 0.9em;
+  display: block;
+  margin: 0 auto;
+}
+
+button.icon {
+  font-size: 1em;
+  padding: 0.1em;
+  position: absolute;
+  border: none;
+  background: none;
+  width: fit-content;
+  border-radius: 50%;
+  transition: transform 0.9s ease;
+  top: 0.3em;
+}
+
+button:has(i).reload {
+  left: 0.1em;
+}
+
+button:has(i).reload:active {
+  transform: rotate(-360deg);
+}
+
+button.visible-feature {
+  right: 0.1em;
+}
+
+button.visible-feature:active {
+  transform: scale(0.6);
+}
+
+button.option {
+  left: -2em;
+}
+
+button.explaining {
+  right: -2em;
+}
+
+button i {
+  font-size: 0.8em;
+  color: var(--text-prime);
 }
 
 div.footer-icons {
@@ -237,11 +253,12 @@ div.footer-icons {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  a {
-    font-size: 0.6em;
-    text-decoration: none;
-    color: white;
-  }
+}
+
+div.footer-icons a {
+  font-size: 0.6em;
+  text-decoration: none;
+  color: white;
 }
 
 dialog {
@@ -359,13 +376,13 @@ button.option-btn {
 }
 
 .dialog-info img,
-video {
+.dialog-info video {
   border-radius: 7px;
   display: block;
   width: 200px;
   margin: 5px auto;
 }
 
-video {
+.dialog-info video {
   width: 220px;
 }

@@ -120,6 +120,7 @@ document.querySelector(".option").addEventListener("click", () => {
 infoBtn.addEventListener("click", () => {
   document.cookie = "info clicked";
   infoBtn.classList.remove("tooltip");
+  dialogInfo.children[1].children[0].focus();
   dialogInfo.showModal();
 });
 closeBtn.addEventListener("click", () => {
